@@ -1,32 +1,36 @@
 # melina-pdf
 
-Héberge un PDF sur le web via **GitHub Pages**, avec une **URL fixe** pour que le
-QR code imprimé reste valable même quand le PDF est mis à jour.
+Héberge une **vidéo** sur le web via **GitHub Pages**, avec une **URL fixe** pour
+que le QR code imprimé reste valable même quand la vidéo est mise à jour.
 
 ## Comment ça marche
 
-- Le PDF est stocké sous un **nom fixe** : `document.pdf`
-- `index.html` affiche ce PDF dans une page propre
+- La vidéo est stockée sous un **nom fixe** : `video.mp4`
+- `index.html` la lit en plein écran et la **lance automatiquement** à l'arrivée
+  (en sourdine, comme l'exigent les navigateurs ; un bouton « 🔊 Activer le son »
+  permet le son en un tap)
 - Le QR code pointe vers l'URL GitHub Pages → tant que le nom du fichier ne change
   pas, le QR reste valable à vie
 
-## URLs (une fois GitHub Pages activé)
+## URLs (GitHub Pages est servi depuis `main` / racine)
 
 - Page d'accueil : `https://mistraleuh.github.io/melina-pdf/`
-- PDF direct : `https://mistraleuh.github.io/melina-pdf/document.pdf`
+- Vidéo directe : `https://mistraleuh.github.io/melina-pdf/video.mp4`
 
 👉 **Génère le QR code à partir de la page d'accueil** (la première URL).
 
-## Mettre à jour le PDF
+## Mettre à jour la vidéo
 
 ```bash
-./update.sh                      # prend le PDF le plus récent dans ~/Downloads
-./update.sh ~/Downloads/mon.pdf  # ou indique le fichier
+./update.sh                       # prend la vidéo la plus récente dans ~/Downloads
+./update.sh ~/Downloads/ma.mp4    # ou indique le fichier
 ```
 
-Le script renomme automatiquement en `document.pdf`, commit et push.
+Le script renomme en `video.mp4`, et **si la vidéo dépasse 100 Mo** (limite stricte
+de GitHub) il la **ré-encode automatiquement** pour passer sous la limite tout en
+gardant la meilleure qualité possible, puis commit et push.
 
 ## ⚠️ Règle d'or
 
-Ne change **jamais** le nom `document.pdf`, sinon l'URL change et tous les QR codes
+Ne change **jamais** le nom `video.mp4`, sinon l'URL change et tous les QR codes
 déjà imprimés cessent de fonctionner.
